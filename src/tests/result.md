@@ -15,7 +15,7 @@ Here is your text converted to **Markdown with LaTeX rendering**, with **formula
 
 **OCR Result (Markdown + LaTeX):**
 
-```markdown
+
 ## 2 Learning from Preferences
 
 In the previous part you trained multiple policies from scratch and compared them at the end of training. In this section, we will see how we can use human preferences on two roll-outs to learn a reward function.
@@ -45,8 +45,4 @@ $$
 $$
 
 Once we have learned the reward function \( \hat{r} \), we can apply any policy optimization algorithm (such as PPO) to maximize the returns of a model under it.
-```
 
----
-
-If you'd like, I can also generate a version with inline math only, or convert it to a different style (e.g., GitHub-friendly math rendering).
