@@ -1,0 +1,17 @@
+# DeepSeek-OCR Inference Test Requirements
+# Install with: pip install -r requirements.txt
+
+# OpenAI client for vLLM API
+openai>=1.0.0
+
+# Image processing
+Pillow>=10.0.0
+
+# HTTP requests
+requests>=2.31.0
+
+# PDF to Image conversion (for pdf_to_image.py)
+PyMuPDF>=1.23.0  # Fast and high-quality PDF rendering
+
+# Optional: For advanced image handling
+# numpy>=1.24.0  # For image array operations

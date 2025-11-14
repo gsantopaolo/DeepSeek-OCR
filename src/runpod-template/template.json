@@ -1,0 +1,37 @@
+{
+  "name": "DeepSeek-OCR vLLM Server",
+  "description": "DeepSeek-OCR frontier OCR model served via vLLM with OpenAI-compatible API. Supports images, PDFs, receipts, invoices, and complex documents. Runs on x86_64 with NVIDIA GPU.",
+  "dockerImage": "gsantopaolo/deepseek-ocr:1.0.2",
+  "containerDiskInGb": 100,
+  "volumeInGb": 50,
+  "volumeMountPath": "/root/.cache/huggingface",
+  "ports": "8000/http",
+  "env": [
+    {
+      "key": "NVIDIA_VISIBLE_DEVICES",
+      "value": "all"
+    },
+    {
+      "key": "NVIDIA_DRIVER_CAPABILITIES",
+      "value": "compute,utility"
+    },
+    {
+      "key": "HF_HOME",
+      "value": "/root/.cache/huggingface"
+    },
+    {
+      "key": "PYTHONUNBUFFERED",
+      "value": "1"
+    },
+    {
+      "key": "VLLM_WORKER_MULTIPROC_METHOD",
+      "value": "spawn"
+    }
+  ],
+  "startScript": "",
+  "category": "AI/ML",
+  "isServerless": false,
+  "imageName": "gsantopaolo/deepseek-ocr:1.0.2",
+  "dockerArgs": "",
+  "readme": "# DeepSeek-OCR vLLM Server\n\n## Overview\nDeepSeek-OCR is a frontier OCR model that provides high-quality text extraction from images, PDFs, receipts, invoices, and complex documents.\n\n## Features\n- ✅ OpenAI-compatible API\n- ✅ Supports multiple image formats (PNG, JPEG, TIFF, etc.)\n- ✅ Optimized for receipts, invoices, forms\n- ✅ Multi-language support\n- ✅ Table and chart extraction\n- ✅ Handwritten text recognition\n\n## API Endpoint\nOnce deployed, access the API at:\n```\nhttp://<pod-id>-8000.proxy.runpod.net/v1\n```\n\n## Quick Test\n```bash\ncurl http://<pod-id>-8000.proxy.runpod.net/v1/models\n```\n\n## Usage Example\n```python\nfrom openai import OpenAI\n\nclient = OpenAI(\n    api_key=\"EMPTY\",\n    base_url=\"http://<pod-id>-8000.proxy.runpod.net/v1\"\n)\n\nresponse = client.chat.completions.create(\n    model=\"deepseek-ai/DeepSeek-OCR\",\n    messages=[{\n        \"role\": \"user\",\n        \"content\": [\n            {\"type\": \"image_url\", \"image_url\": {\"url\": \"https://example.com/receipt.png\"}},\n            {\"type\": \"text\", \"text\": \"Free OCR.\"}\n        ]\n    }],\n    max_tokens=2048,\n    temperature=0.0\n)\n\nprint(response.choices[0].message.content)\n```\n\n## GPU Requirements\n- Minimum: 24GB VRAM (RTX 3090, RTX 4090, A5000)\n- Recommended: 40GB+ VRAM (A100, H100)\n\n## First Run\nThe model (~20GB) will download on first startup. This takes 5-10 minutes depending on network speed.\n\n## Health Check\n```bash\ncurl http://<pod-id>-8000.proxy.runpod.net/health\n```\n\n## Documentation\n- API Docs: http://<pod-id>-8000.proxy.runpod.net/docs\n- GitHub: https://github.com/deepseek-ai/DeepSeek-OCR\n- vLLM Docs: https://docs.vllm.ai/\n\n## Support\nFor issues or questions, visit the GitHub repository."
+}
