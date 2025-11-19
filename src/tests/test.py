@@ -46,8 +46,12 @@ class FileTypeOCRTest:
     }
     
     # Simple prompt - DeepSeek-OCR works best with minimal prompts
-    OCR_PROMPT = "Free OCR. Convert to MD the handwriten old italian text"
-    
+    # OCR_PROMPT = "convert the document in md and latex if needed, it may contain text, math formulas, charts X and Y axis, stck price candle graph, diagrams, or any sort of graphs. If there are charts you can reproduce in a tabular format containing X, Y value and the actual data point value"
+
+    # OCR_PROMPT = "Convert the document to markdown, use tables or LaTex when needed"
+
+    OCR_PROMPT = "Microfiche scan, scan every cell, describe and ocr"
+
     def __init__(self, base_url: str, api_key: str = "EMPTY", debug: bool = False):
         """
         Initialize OCR processor.

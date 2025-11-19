@@ -1,16 +1,10 @@
 # DeepSeek-OCR Quick Start Guide
 
-## 🚀 5-Minute Setup
+## 🚀 Choose Your Deployment
 
-### 1. Build Container (30-60 min first time)
+### Option A: Pre-Built Docker Image (Fastest - No Build Required)
 ```bash
-cd deployment
-chmod +x build.sh
-./build.sh
-```
-
-### 2. Run Container
-```bash
+# Pull and run directly from Docker Hub
 docker run -d \
   --name deepseek-ocr \
   --runtime nvidia \
@@ -18,20 +12,47 @@ docker run -d \
   -p 8000:8000 \
   --ipc=host \
   gsantopaolo/deepseek-ocr:latest
-```
 
-### 3. Wait for Ready
-```bash
+# Check logs
 docker logs -f deepseek-ocr
 # Wait for: "Application startup complete"
 ```
 
-### 4. Test It
-```bash
-cd src
-pip install -r requirements.txt
-python test_inference.py
+### Option B: RunPod Cloud Deployment (No Local GPU)
 ```
+1. Go to: https://www.runpod.io/console/templates
+2. Create template with image: gsantopaolo/deepseek-ocr:latest
+3. Choose GPU: RTX 4090 or A100 (24GB+ VRAM)
+4. Deploy - Get endpoint: http://<pod-id>-8000.proxy.runpod.net
+```
+
+**Full RunPod guide**: See [`src/runpod-template/QUICK_START.md`](src/runpod-template/QUICK_START.md)
+
+### Option C: Build From Source
+```bash
+cd deployment
+chmod +x build.sh
+./build.sh  # Takes 30-60 min first time
+```
+
+## 🧪 Test Your Deployment
+
+### Quick Test
+```bash
+cd src/tests
+pip install openai
+
+# Test local Docker
+python test.py --base-url http://localhost:8000
+
+# Test RunPod deployment
+python test.py --base-url https://<pod-id>-8000.proxy.runpod.net
+
+# Save results to markdown
+python test.py --base-url http://localhost:8000 --output results.md
+```
+
+This will test all supported file types (JPEG, PNG, PDF, etc.) in the `samples/` directory.
 
 ## 📝 Common Commands
 
