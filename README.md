@@ -7,21 +7,19 @@ This repository provides everything you need to deploy and test DeepSeek-OCR in 
 
 ### 1. Ready-to-Use Docker Image
 Pre-built Docker image with DeepSeek-OCR and vLLM, optimized for production deployment:
-- **Docker Hub**: `gsantopaolo/deepseek-ocr:latest` (pull and run immediately)
+- **Docker Hub**: [`gsantopaolo/deepseek-ocr:latest`](https://hub.docker.com/r/gsantopaolo/deepseek-ocr/tags) (pull and run immediately)
 - **Build yourself**: Full Dockerfile and build scripts included
 - **vLLM optimized**: High-performance inference with OpenAI-compatible API
 - **GPU ready**: CUDA 12.1 with cuDNN support
 
 ### 2. RunPod Cloud Deployment
-One-click deployment template for [RunPod](https://www.runpod.io/) cloud GPUs:
+One-click deployment template for [RunPod](https://console.runpod.io/deploy?template=2pujxwimeo) cloud GPUs:
 - **Template config**: Pre-configured template in `src/runpod-template/`
 - **5-minute setup**: From template creation to running API
 - **Cost-effective**: ~$0.69/hour (RTX 4090) to ~$1.89/hour (A100)
-- **Documentation**: Complete setup guide with troubleshooting
 
 ### 3. Comprehensive Testing Suite
 - **test script** in [`src/tests/test.py`](/src/tests/)
-
 
 ## ✅ Validated OCR Performance
 
